@@ -74,6 +74,13 @@ for (const cliente of clientes) {
     console.log('-----');
 }
 
+const gestoresJSON = JSON.stringify(gestores);
+console.log(gestoresJSON);
+console.log(gestoresJSON.length);
+
+const cliente1JSON = JSON.stringify(cliente1);
+console.log(cliente1JSON);
+
 // todos los gestores
 // console.log(gestores);
 
