@@ -36,59 +36,21 @@ Escribe un programa que declare 3 objetos de cada modelo de datos considerado: g
 
 //OTRO METODO DECLARANDO LA VARIABLE -SERVER-
 
-const server = 'localhost:8085';
 
-const opciones = {
-    url: `http://${server}/ok`,
-    metodo: 'GET'
-};
+// obtenerGestores(gestores => {
+//     mostrarGestores(gestores);
+// });
 
-ajax(opciones, (data) =>{
-    console.log(data);
-})
+async function main() {
+    const gestores = await obtenerGestores();
+    mostrarGestores(gestores);
+}
 
-const opcionesLogin = {
-    url: `http://${server}/login/gestor/`,
-    metodo : 'POST',
-    body: 'usuario=gestor1&password=gestor1',
-    cabeceras: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-    }
-};
+main();
 
-// realizar la petición del login del gestor
 
-ajax(opcionesLogin, (data) => {
-   
-    // esta función se ejecuta cuando los datos han sido
-    // devueltos por el servicio
-
-    // convirtiendo el string en formato JSON a objeto de JavaScript
-    
-    const respuesta = JSON.parse(data);
-   
-    // guardamos el token
-    const token = respuesta.data.token;
-
-    // realizamos la solicitud para obtener todos los gestores
-    
-    const opcionesObtenerGestores = {
-        url: 'http://localhost:8085/gestores/',
-        metodo: 'GET',
-        cabeceras: {
-            Authorization: `Basic ${token}`
-        }
-    }
-    
-    ajax(opcionesObtenerGestores, (data) =>{
-        
-        // data tiene toda la información de los gestores en formato string
-        console.log(data);
-        
-        // convertir a objeto de JavaScript
-        const respuesta = JSON.parse(data);
-
-        const gestores = respuesta.data;
-        mostrarGestores(gestores);
-    })
-});
+// función ejecutable
+// (async () => {
+//     const gestores = await obtenerGestores();
+//     mostrarGestores(gestores);
+// })();
